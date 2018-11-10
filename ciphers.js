@@ -35,6 +35,7 @@ var Ciphers = {
         break;
       default:
         console.error("Cipher " + cipher + " not found.");
+        return;
     }
   },
   decode: function(cipher, cipher_text, params){
@@ -44,6 +45,7 @@ var Ciphers = {
         break;
       default:
         console.error("Cipher " + cipher + " not found.");
+        return;
     }
   }
 };
