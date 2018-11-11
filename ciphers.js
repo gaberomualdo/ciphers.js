@@ -41,32 +41,32 @@ var Ciphers = {
     "----."
   ],
   nato_spelling_alphabet: [
-    "Alfa",
-    "Bravo",
-    "Charlie",
-    "Delta",
-    "Echo",
-    "Foxtrot",
-    "Golf",
-    "Hotel",
-    "India",
-    "Juliett",
-    "Kilo",
-    "Lima",
-    "Mike",
-    "November",
-    "Oscar",
-    "Papa",
-    "Quebec",
-    "Romeo",
-    "Sierra",
-    "Tango",
-    "Uniform",
-    "Victor",
-    "Whiskey",
-    "X-ray",
-    "Yankee",
-    "Zulu"
+    "alfa",
+    "bravo",
+    "charlie",
+    "delta",
+    "echo",
+    "foxtrot",
+    "golf",
+    "hotel",
+    "india",
+    "juliett",
+    "kilo",
+    "lima",
+    "mike",
+    "november",
+    "oscar",
+    "papa",
+    "quebec",
+    "romeo",
+    "sierra",
+    "tango",
+    "uniform",
+    "victor",
+    "whiskey",
+    "x-ray",
+    "yankee",
+    "zulu"
   ],
   ciphers: [
     "ROT13",
@@ -171,8 +171,13 @@ var Ciphers = {
             encoded_text += " ";
           }
           var char = cipher_text[char_index];
-          if(this.alphabet.indexOf(char) != -1){
-            encoded_text += this.nato_spelling_alphabet[this.alphabet.indexOf(char)];
+          if(this.alphabet.indexOf(char.toLowerCase()) != -1){
+            var encoded_char = this.nato_spelling_alphabet[this.alphabet.indexOf(char.toLowerCase())];
+            if(char == char.toUpperCase()){
+              encoded_text += encoded_char.toUpperCase();
+            }else{
+              encoded_text += encoded_char.toLowerCase();
+            }
           }else if(char == "."){
             encoded_text += "Stop";
           }else if(char == " "){
@@ -182,6 +187,7 @@ var Ciphers = {
           }
         }
         return encoded_text;
+        break;
       default:
         console.error("Cipher " + cipher + " not found.");
         return;
@@ -215,6 +221,28 @@ var Ciphers = {
             decoded_text += ".";
           }else if(char == "--..--"){
             decoded_text += ",";
+          }else{
+            decoded_text += char;
+          }
+        }
+        return decoded_text;
+        break;
+      case "NATO Spelling Alphabet":
+        var decoded_text = "";
+        cipher_text = cipher_text.split(" ");
+        for(var char_index = 0; char_index < cipher_text.length; char_index++){
+          var char = cipher_text[char_index];
+          if(this.nato_spelling_alphabet.indexOf(char.toLowerCase()) != -1){
+            var decoded_char = this.alphabet[this.nato_spelling_alphabet.indexOf(char.toLowerCase())];
+            if(char == char.toUpperCase()){
+              decoded_text += decoded_char.toUpperCase();
+            }else{
+              decoded_text += decoded_char.toLowerCase();
+            }
+          }else if(char == "Stop"){
+            decoded_text += ".";
+          }else if(char == "(space)"){
+            decoded_text += " ";
           }else{
             decoded_text += char;
           }
