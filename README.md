@@ -2,7 +2,7 @@
 
 ## Description
 
-Ciphers.js is a set of simple ciphers written in JavaScript that can be encoded or decoded in easily using two simple JavaScript methods.
+A JavaScript library for encoding and decoding text using simple Ciphers.
 
 ## Ciphers
 
@@ -35,9 +35,9 @@ Cipher.decode(cipher_name, cipher_text, parameters);
  - ```cipher_name``` (String) &mdash; the name of the cipher. Accepted names are stored in ```Cipher.ciphers```.
  - ```cipher_text``` (String) &mdash; the text you'd like to encode or decode.
  - ```parameters``` (Array) &mdash; extra parameters needed for that specific cipher. Descriptions of parameters for each cipher are stored in ```Cipher.parameters```.
- 
+
 ## Examples
- 
+
 ### Encode "Hello, World!" in Caesar Cipher shift 4
 
 ```

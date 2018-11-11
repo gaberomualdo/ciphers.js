@@ -1,1 +1,6 @@
 theme: jekyll-theme-cayman
+title: "Ciphers.js"
+description: "A JavaScript library for encoding and decoding text using simple Ciphers."
+show_downloads: "true"
+github:
+  zip_url: "https://xtrp.github.io/ciphers.js/ciphers.zip"
