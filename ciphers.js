@@ -77,6 +77,15 @@ var Ciphers = {
     "Base64",
     "URL Encoding"
   ],
+  parameters: [
+    "[]",
+    "[Int shift_amount]",
+    "[]",
+    "[String keyword]",
+    "[]",
+    "[]",
+    "[]"
+  ],
   encode: function(cipher, cipher_text, params){
     switch (cipher) {
       case "Caesar Cipher":
