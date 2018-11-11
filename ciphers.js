@@ -40,6 +40,34 @@ var Ciphers = {
     "---..",
     "----."
   ],
+  nato_spelling_alphabet: [
+    "Alfa",
+    "Bravo",
+    "Charlie",
+    "Delta",
+    "Echo",
+    "Foxtrot",
+    "Golf",
+    "Hotel",
+    "India",
+    "Juliett",
+    "Kilo",
+    "Lima",
+    "Mike",
+    "November",
+    "Oscar",
+    "Papa",
+    "Quebec",
+    "Romeo",
+    "Sierra",
+    "Tango",
+    "Uniform",
+    "Victor",
+    "Whiskey",
+    "X-ray",
+    "Yankee",
+    "Zulu"
+  ],
   ciphers: [
     "ROT13",
     "Caesar Cipher",
@@ -136,6 +164,24 @@ var Ciphers = {
         }
         return encoded_text;
         break;
+      case "NATO Spelling Alphabet":
+        var encoded_text = "";
+        for(var char_index = 0; char_index < cipher_text.length; char_index++){
+          if(char_index != 0){
+            encoded_text += " ";
+          }
+          var char = cipher_text[char_index];
+          if(this.alphabet.indexOf(char) != -1){
+            encoded_text += this.nato_spelling_alphabet[this.alphabet.indexOf(char)];
+          }else if(char == "."){
+            encoded_text += "Stop";
+          }else if(char == " "){
+            encoded_text += "(space)";
+          }else{
+            encoded_text += char;
+          }
+        }
+        return encoded_text;
       default:
         console.error("Cipher " + cipher + " not found.");
         return;
@@ -154,25 +200,23 @@ var Ciphers = {
         break;
       case "Morse Code":
         var decoded_text = "";
+        cipher_text = cipher_text.split(" ");
         for(var char_index = 0; char_index < cipher_text.length; char_index++){
-          if(char_index != 0){
-            decoded_text += " ";
-          }
           var char = cipher_text[char_index];
-          if(this.alphabet.indexOf(char.toLowerCase()) != -1){
-            encoded_text += this.morse[this.alphabet.indexOf(char.toLowerCase())];
-          }else if(parseInt(char) >= 0 && parseInt(char) <= 9){
-            encoded_text += this.morse_numbers[parseInt(char)];
-          }else if(char == " "){
-            encoded_text += "/";
-          }else if(char == "!"){
-            encoded_text += "-.-.--";
-          }else if(char == "."){
-            encoded_text += ".-.-.-";
-          }else if(char == ","){
-            encoded_text += "--..--";
+          if(this.morse.indexOf(char) != -1){
+            decoded_text += this.alphabet[this.morse.indexOf(char)];
+          }else if(this.morse_numbers.indexOf(char) != -1){
+            decoded_text += this.morse_numbers.indexOf(char);
+          }else if(char == "/"){
+            decoded_text += " ";
+          }else if(char == "-.-.--"){
+            decoded_text += "!";
+          }else if(char == ".-.-.-"){
+            decoded_text += ".";
+          }else if(char == "--..--"){
+            decoded_text += ",";
           }else{
-            encoded_text += char;
+            decoded_text += char;
           }
         }
         return decoded_text;
