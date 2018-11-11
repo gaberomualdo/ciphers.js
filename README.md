@@ -4,6 +4,10 @@
 
 A JavaScript library for encoding and decoding text using simple Ciphers.
 
+## Download
+
+Download [by clicking on this link](https://xtrp.github.io/ciphers.js/ciphers.zip).
+
 ## Ciphers
 
 Ciphers included in Ciphers.js include:
