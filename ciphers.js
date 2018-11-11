@@ -1,5 +1,45 @@
 var Ciphers = {
   alphabet: "abcdefghijklmnopqrstuvwxyz".split(""),
+  morse: [
+    '.-',
+    '-...',
+    '-.-.',
+    '-..',
+    '.',
+    '..-.',
+    '--.',
+    '....',
+    '..',
+    '.---',
+    '-.-',
+    '.-..',
+    '--',
+    '-.',
+    '---',
+    '.--.',
+    '--.-',
+    '.-.',
+    '...',
+    '-',
+    '..-',
+    '...-',
+    '.--',
+    '-..-',
+    '-.--',
+    '--..'
+  ],
+  morse_numbers: [
+    "-----",
+    ".----",
+    "..---",
+    "...--",
+    "....-",
+    ".....",
+    "-....",
+    "--...",
+    "---..",
+    "----."
+  ],
   ciphers: [
     "ROT13",
     "Caesar Cipher",
@@ -71,6 +111,31 @@ var Ciphers = {
         }
         return encoded_text;
         break;
+      case "Morse Code":
+        var encoded_text = "";
+        for(var char_index = 0; char_index < cipher_text.length; char_index++){
+          if(char_index != 0){
+            encoded_text += " ";
+          }
+          var char = cipher_text[char_index];
+          if(this.alphabet.indexOf(char.toLowerCase()) != -1){
+            encoded_text += this.morse[this.alphabet.indexOf(char.toLowerCase())];
+          }else if(parseInt(char) >= 0 && parseInt(char) <= 9){
+            encoded_text += this.morse_numbers[parseInt(char)];
+          }else if(char == " "){
+            encoded_text += "/";
+          }else if(char == "!"){
+            encoded_text += "-.-.--";
+          }else if(char == "."){
+            encoded_text += ".-.-.-";
+          }else if(char == ","){
+            encoded_text += "--..--";
+          }else{
+            encoded_text += char;
+          }
+        }
+        return encoded_text;
+        break;
       default:
         console.error("Cipher " + cipher + " not found.");
         return;
@@ -86,6 +151,31 @@ var Ciphers = {
         break;
       case "Vigenere Cipher":
         return this.encode("Vigenere Cipher", cipher_text, [params[0], true]);
+        break;
+      case "Morse Code":
+        var decoded_text = "";
+        for(var char_index = 0; char_index < cipher_text.length; char_index++){
+          if(char_index != 0){
+            decoded_text += " ";
+          }
+          var char = cipher_text[char_index];
+          if(this.alphabet.indexOf(char.toLowerCase()) != -1){
+            encoded_text += this.morse[this.alphabet.indexOf(char.toLowerCase())];
+          }else if(parseInt(char) >= 0 && parseInt(char) <= 9){
+            encoded_text += this.morse_numbers[parseInt(char)];
+          }else if(char == " "){
+            encoded_text += "/";
+          }else if(char == "!"){
+            encoded_text += "-.-.--";
+          }else if(char == "."){
+            encoded_text += ".-.-.-";
+          }else if(char == ","){
+            encoded_text += "--..--";
+          }else{
+            encoded_text += char;
+          }
+        }
+        return decoded_text;
         break;
       default:
         console.error("Cipher " + cipher + " not found.");
