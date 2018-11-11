@@ -36,6 +36,34 @@ var Ciphers = {
       case "ROT13":
         return this.encode("Caesar Cipher", cipher_text, [13]);
         break;
+      case "Vigenere Cipher":
+        var encoded_text = "";
+        var current_encode_char = params[0][0];
+        var current_encode_char_index = 0;
+        for(var char_index = 0; char_index < cipher_text.length; char_index++){
+            var char = cipher_text[char_index];
+            if(this.alphabet.indexOf(char.toLowerCase()) != -1){
+              var letter_case = "lower";
+              if(char == char.toUpperCase()){
+                letter_case = "upper";
+              }
+
+              var encoded_char = this.encode("Caesar Cipher", char, [this.alphabet.indexOf(current_encode_char)]);
+
+              if(letter_case == "lower"){
+                encoded_text += encoded_char;
+              }else{
+                encoded_text += encoded_char.toUpperCase();
+              }
+
+              current_encode_char_index++;
+              current_encode_char = params[0][current_encode_char_index % params[0].length];
+            }else{
+              encoded_text += char;
+            }
+        }
+        return encoded_text;
+        break;
       default:
         console.error("Cipher " + cipher + " not found.");
         return;
