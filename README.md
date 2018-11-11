@@ -1,37 +1,51 @@
-## Welcome to GitHub Pages
+# Ciphers.js
 
-You can use the [editor on GitHub](https://github.com/xtrp/ciphers.js/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+## Description
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Ciphers.js is a set of simple ciphers written in JavaScript that can be encoded or decoded in easily using two simple JavaScript methods.
 
-### Markdown
+## Ciphers
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Ciphers included in Ciphers.js include:
+ - ROT13
+ - The Caesar Cipher
+ - Morse Code
+ - The Vigenere Cipher
+ - The NATO Spelling Alphabet
+ - Base64 Encoding
+ - URL Encoding
 
-```markdown
-Syntax highlighted code block
+## Format of Ciphers.js
 
-# Header 1
-## Header 2
-### Header 3
+All of the methods in Ciphers.js are stored in the ```Ciphers``` object.
 
-- Bulleted
-- List
+## Encoding and decoding with Ciphers.js
 
-1. Numbered
-2. List
+The ```Cipher.encode()``` and ```Cipher.decode()``` methods are used to encode text using the specific cipher and parameters.
 
-**Bold** and _Italic_ and `Code` text
+They are formatted like this:
 
-[Link](url) and ![Image](src)
+```
+Cipher.encode(cipher_name, cipher_text, parameters);
+Cipher.decode(cipher_name, cipher_text, parameters);
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### Description of Arguments
 
-### Jekyll Themes
+ - ```cipher_name``` (String) &mdash; the name of the cipher. Accepted names are stored in ```Cipher.ciphers```.
+ - ```cipher_text``` (String) &mdash; the text you'd like to encode or decode.
+ - ```parameters``` (Array) &mdash; extra parameters needed for that specific cipher. Descriptions of parameters for each cipher are stored in ```Cipher.parameters```.
+ 
+## Examples
+ 
+### Encode "Hello, World!" in Caesar Cipher shift 4
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/xtrp/ciphers.js/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+```
+Cipher.encode("Caesar Cipher", "Hello, World!", [4]);
+```
 
-### Support or Contact
+### Encode "Hello!" in Vigenere Cipher with keyword "test"
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+```
+Cipher.decode("Vigenere Cipher", "Hello!", ["test"]);
+```
