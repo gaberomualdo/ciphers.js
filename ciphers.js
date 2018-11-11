@@ -75,7 +75,6 @@ var Ciphers = {
     "Vigenere Cipher",
     "NATO Spelling Alphabet",
     "Base64",
-    "UTF-8",
     "URL Encoding"
   ],
   encode: function(cipher, cipher_text, params){
@@ -188,6 +187,12 @@ var Ciphers = {
         }
         return encoded_text;
         break;
+      case "Base64":
+        return btoa(cipher_text);
+        break;
+      case "URL Encoding":
+        return (encodeURIComponent(cipher_text));
+        break;
       default:
         console.error("Cipher " + cipher + " not found.");
         return;
@@ -248,6 +253,12 @@ var Ciphers = {
           }
         }
         return decoded_text;
+        break;
+      case "Base64":
+        return atob(cipher_text);
+        break;
+      case "URL Encoding":
+        return decodeURIComponent(cipher_text);
         break;
       default:
         console.error("Cipher " + cipher + " not found.");
