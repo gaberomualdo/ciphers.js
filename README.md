@@ -4,6 +4,16 @@
 
 A JavaScript library for encoding and decoding text using simple Ciphers.
 
+## Adding it to Your Site
+
+To add it to your site, simply add the following code to the end of your sites ```body``` tag:
+
+```
+<script src="https://xtrp.github.io/ciphers.js/ciphers.js"></script>
+```
+
+Alternatively, you can download it below and link the local file in a ```<script>``` tag.
+
 ## Download
 
 Download [by clicking on this link](https://xtrp.github.io/ciphers.js/ciphers.zip).
