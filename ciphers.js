@@ -12,7 +12,7 @@ var Ciphers = {
   ],
   encode: function(cipher, cipher_text, params){
     switch (cipher) {
-      case "ROT13":
+      case "Caesar Cipher":
         var encoded_text = "";
         for(var char_index = 0; char_index < cipher_text.length; char_index++){
           var char = cipher_text[char_index];
@@ -21,7 +21,7 @@ var Ciphers = {
             if(char == char.toUpperCase()){
               letter_case = "upper";
             }
-            var encoded_char = this.alphabet[(this.alphabet.indexOf(char.toLowerCase()) + 13) % this.alphabet.length];
+            var encoded_char = this.alphabet[(this.alphabet.indexOf(char.toLowerCase()) + params[0]) % this.alphabet.length];
             if(letter_case == "lower"){
               encoded_text += encoded_char;
             }else{
@@ -33,6 +33,9 @@ var Ciphers = {
         }
         return encoded_text;
         break;
+      case "ROT13":
+        return this.encode("Caesar Cipher", cipher_text, [13]);
+        break;
       default:
         console.error("Cipher " + cipher + " not found.");
         return;
@@ -40,8 +43,11 @@ var Ciphers = {
   },
   decode: function(cipher, cipher_text, params){
     switch (cipher) {
+      case "Caesar Cipher":
+        return this.encode("Caesar Cipher", cipher_text, [26 - params[0]]);
+        break;
       case "ROT13":
-        return this.encode("ROT13", cipher_text, params);
+        return this.decode("Caesar Cipher", cipher_text, [13]);
         break;
       default:
         console.error("Cipher " + cipher + " not found.");
