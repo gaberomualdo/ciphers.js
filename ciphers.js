@@ -37,6 +37,7 @@ var Ciphers = {
         return this.encode("Caesar Cipher", cipher_text, [13]);
         break;
       case "Vigenere Cipher":
+        params[0] = params[0].toLowerCase();
         var encoded_text = "";
         var current_encode_char = params[0][0];
         var current_encode_char_index = 0;
@@ -48,7 +49,13 @@ var Ciphers = {
                 letter_case = "upper";
               }
 
-              var encoded_char = this.encode("Caesar Cipher", char, [this.alphabet.indexOf(current_encode_char)]);
+              var encoded_char;
+
+              if(params[1]){
+                encoded_char = this.decode("Caesar Cipher", char, [this.alphabet.indexOf(current_encode_char)]);
+              }else{
+                encoded_char = this.encode("Caesar Cipher", char, [this.alphabet.indexOf(current_encode_char)]);
+              }
 
               if(letter_case == "lower"){
                 encoded_text += encoded_char;
@@ -76,6 +83,9 @@ var Ciphers = {
         break;
       case "ROT13":
         return this.decode("Caesar Cipher", cipher_text, [13]);
+        break;
+      case "Vigenere Cipher":
+        return this.encode("Vigenere Cipher", cipher_text, [params[0], true]);
         break;
       default:
         console.error("Cipher " + cipher + " not found.");
