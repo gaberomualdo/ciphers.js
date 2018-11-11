@@ -79,9 +79,9 @@ var Ciphers = {
   ],
   parameters: [
     "[]",
-    "[Integer shift_amount]",
+    "[shift_amount (Integer)]",
     "[]",
-    "[String keyword]",
+    "[String keyword (String)]",
     "[]",
     "[]",
     "[]"
