@@ -79,7 +79,7 @@ var Ciphers = {
   ],
   parameters: [
     "[]",
-    "[Int shift_amount]",
+    "[Integer shift_amount]",
     "[]",
     "[String keyword]",
     "[]",
